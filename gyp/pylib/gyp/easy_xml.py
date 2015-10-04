@@ -119,7 +119,10 @@ def WriteXmlIfChanged(content, path, encoding='utf-8', pretty=False,
   try:
     xml_string = xml_string.encode(encoding)
   except Exception:
-    xml_string = unicode(xml_string, 'latin-1').encode(encoding)
+    try:
+      xml_string = unicode(xml_string, 'latin-1').encode(encoding)
+    except Exception:
+      xml_string = unicode(xml_string, 'windows-1251').encode(encoding)
 
   # Get the old content
   try:
